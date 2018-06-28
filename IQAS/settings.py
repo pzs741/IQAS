@@ -23,7 +23,7 @@ sys.path.insert(0,os.path.join(BASE_DIR,'xadmin'))
 SECRET_KEY = 'l!o97kko7!5__an3)^c2t%n&=e9vad!%$3sz=rw53nczwm*o@e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
