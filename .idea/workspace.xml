@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d5a9bb8-ef76-4038-9edc-e737ad5162cb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/huawei/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/huawei/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local_build.py" beforeDir="false" afterPath="$PROJECT_DIR$/local_build.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,15 +50,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="model_list.top_toolbar.import.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/xadmin/templates/xadmin/excel/model_list.top_toolbar.import.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="113" column="13" selection-start-line="113" selection-start-column="13" selection-end-line="113" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="adminx.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/huawei/adminx.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -93,8 +83,8 @@
       <file leaf-file-name="local_build.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/local_build.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="798">
-              <caret line="123" column="17" lean-forward="true" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
+            <state relative-caret-position="342">
+              <caret line="88" column="13" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -133,6 +123,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="342">
               <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_mysql.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/256102350/_mysql.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="310">
+              <caret line="266" column="8" selection-start-line="266" selection-start-column="8" selection-end-line="266" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -243,8 +242,8 @@
         <option value="$PROJECT_DIR$/IQAS/settings.py" />
         <option value="$PROJECT_DIR$/huawei/adminx.py" />
         <option value="$PROJECT_DIR$/xadmin/templates/xadmin/excel/model_list.top_toolbar.import.html" />
-        <option value="$PROJECT_DIR$/local_build.py" />
         <option value="$PROJECT_DIR$/huawei/models.py" />
+        <option value="$PROJECT_DIR$/local_build.py" />
       </list>
     </option>
   </component>
@@ -571,7 +570,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/upload.html" />
     <entry file="file://$PROJECT_DIR$/utils/initfile.py" />
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/threading.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -799,10 +797,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/256102350/_mysql.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="266" column="8" selection-start-line="266" selection-start-column="8" selection-end-line="266" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/local_build.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="123" column="17" lean-forward="true" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
+        <state relative-caret-position="342">
+          <caret line="88" column="13" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
