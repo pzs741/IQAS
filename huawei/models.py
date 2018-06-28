@@ -16,7 +16,7 @@ def summery(summery_list):
         q = QGDT(i[0],
                  LOG_ENABLE=True,
                  LOG_LEVEL='WARNING',
-                 MAX_SAMPLE=5,
+                 MAX_SAMPLE=3,
                  RANDOM=True,
                  LAMBDA=0.2,
                  ALPHA=0.3,

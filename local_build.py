@@ -91,6 +91,7 @@ def mysql_to_es():
 if __name__ == "__main__":
     dir = os.path.dirname(os.getcwd()) + '/IQAS/media/huawei'
     path_list = os.listdir(dir)
+    count = 0
     for path in path_list:
         filepath = os.path.join(dir, path)
         with open(filepath, 'r', encoding='utf-8') as html:
@@ -115,6 +116,8 @@ if __name__ == "__main__":
                 m = Mysql(i)
                 try:
                     m.save()
+                    count += 1
+                    if count%100 == 0:mysql_to_es()
                     print('md5:{}\nquestion:{}\ntopic:{}\nanswer:{}\nfile_name:{}\nexpand:{}\n'.format(m.md5, m.question, m.topic, m.answer,m.file_name,m.expand))
                 except Exception as e:
                     print(e)
