@@ -1,0 +1,31 @@
+upstream django {
+server 127.0.0.1:8000; # for a web port socket (we'll use this first
+
+events {
+    worker_connections  10240;
+}
+
+http{
+server {
+    listen 80;
+    server_name 127.0.0.1 www.iqas.com;
+    charset     utf-8;
+    access_log      /home/pzs741/PycharmProjects/IQAS/nginx_access.log;
+    error_log       /home/pzs741/PycharmProjects/IQAS/nginx_error.log;
+    client_max_body_size 75M;
+
+
+    location /static {
+        alias /home/pzs741/PycharmProjects/IQAS/static;
+    }
+
+location /media {
+        alias /home/pzs741/PycharmProjects/IQAS/media;
+    }
+    location / {
+        include     /etc/nginx/uwsgi_params;
+        uwsgi_pass  127.0.0.1:8000;
+    }
+}
+}
+worker_rlimit_nofile 65535;

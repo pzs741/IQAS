@@ -1,0 +1,111 @@
+{% load i18n %}
+<style type="text/css">
+.processcontainer{
+   width:95%;
+   border:1px solid #6C9C2C;
+   height:25px;
+    margin: auto;
+
+ }
+#processbar{
+   background:#95CA0D;
+   float:left;
+   height:100%;
+   text-align:center;
+   line-height:150%;
+ }
+</style>
+
+<div class="btn-group export">
+  <a class="dropdown-toggle btn btn-default btn-sm" data-toggle="dropdown" href="#">
+    <i class="icon-share"></i>信息检索<span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <li><a data-toggle="modal" data-target="#export-modal-import-excel"><i class="icon-circle-arrow-down"></i>检索生成</a></li>
+  </ul>
+    <div id="export-modal-import-excel" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form method="post" action="">
+              {% csrf_token %}
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">检索生成</h4>
+          </div>
+          <div class="modal-body">
+              <strong>说明：</strong>单击“开始”按钮后，所有的问答信息将上传至Elesticsearch搜索引擎进行初始化（如若已经初始化，
+              则会自动检测新增或者改动的信息进行上传），生成相应的搜索建议字段，并使用OKapi BM25算法进行打分并排序，
+              为Andriod移动端用户带来良好的问答体验。
+              <hr/>
+              <div id="content">
+                  <p>数据库第<strong>0</strong>
+                    页，共<strong> 0</strong> 条问答信息;<br/>
+                    <strong> 0</strong> 分钟生成
+                    <strong>0</strong> 条检索信息;<br/>
+                    其中未产生搜索建议字段 <strong> 0</strong>条，转换率为 <strong>
+                    0%</strong></p>
+                  
+              </div>
+          </div>
+              <div class="processcontainer">
+                <div id="processbar" style="width:0%;"></div>
+              </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id = "btn2">{% trans "Close" %}/返回</button>
+            <button class="btn btn-success" type="submit" id="submit_upload_b" value="检索生成" name="ie" ><i class="icon-share"></i>开始/查看</button>
+          </div>
+          </form>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dalog -->
+    </div><!-- /.modal -->
+<script>
+        function update() {
+            $.getJSON("/num/",function(jsonData){
+                window.pro = jsonData.pro;
+                if(window.pro>0){
+                $("#content").html('<p>' +'数据库第'+'<strong>'+jsonData.id +'</strong>'
+                    + '页，'+'共'+'<strong>'+ jsonData.sum+'</strong>' +'条问答信息;<br/>'
+                    +'<strong>'+ jsonData.time+'</strong>'+ '分钟生成'+
+                    '<strong>'+ jsonData.count+'</strong>'+ '条检索信息;<br/>'
+                    +'其中未产生搜索建议字段' +'<strong>'+ jsonData.err+'</strong>'+'条，转换率为'+ '<strong>'+
+                    jsonData.rate+'%</strong>'+'</p>');
+                }
+        });}
+
+
+    var btn1 = document.getElementById("submit_upload_b");
+    var btn2 = document.getElementById("btn2");
+    var t;
+
+    btn1.addEventListener("click", function(){
+        t = setInterval(function() {
+           update();
+           setProcess()
+       }, 1000);
+    });
+
+    btn2.addEventListener("click", function(){
+        clearInterval(t);
+        window.clearInterval(bartimer)
+        });
+
+</script>
+<script type="text/javascript">
+ function setProcess(){
+    var processbar = document.getElementById("processbar");
+    if (window.pro > 0) {
+        processbar.style.width = parseInt(window.pro )+ "%";
+        processbar.innerHTML = processbar.style.width;
+    }
+            if(processbar.style.width == "100%"){
+     window.clearInterval(bartimer);
+  }
+ }
+    var bartimer = window.setInterval(function(){setProcess();},1000);
+    window.onload = function(){
+        bartimer;
+}
+
+    </script>
+
+</div>

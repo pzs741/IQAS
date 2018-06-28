@@ -1,0 +1,143 @@
+{% load i18n %}
+<style type="text/css">
+.processcontainer{
+   width:95%;
+   border:1px solid #6C9C2C;
+   height:25px;
+    margin: auto;
+
+ }
+#processbar{
+   background:#95CA0D;
+   float:left;
+   height:100%;
+   text-align:center;
+   line-height:150%;
+ }
+</style>
+
+<div class="btn-group export">
+  <a class="dropdown-toggle btn btn-default btn-sm" data-toggle="dropdown" href="#">
+    <i class="icon-share"></i>知识库<span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <li><a data-toggle="modal" data-target="#export-modal-import-excel"><i class="icon-circle-arrow-down"></i>知识库构建</a></li>
+  </ul>
+    <script>
+        function fileChange(target){
+//检测上传文件的类型
+            var imgName = document.all.submit_upload.value;
+            var ext,idx;
+            if (imgName == ''){
+                document.all.submit_upload_b.disabled=true;
+                alert("请选择需要上传的 html 文件!");
+                return;
+            } else {
+                idx = imgName.lastIndexOf(".");
+                if (idx != -1){
+                    ext = imgName.substr(idx+1).toUpperCase();
+                    ext = ext.toLowerCase( );
+                    if (ext != 'html'){
+                        document.all.submit_upload_b.disabled=true;
+                        alert("只能上传 .html 类型的文件!");
+                        return;
+                    }
+                } else {
+                    document.all.submit_upload_b.disabled=true;
+                    alert("只能上传 .html 类型的文件!");
+                    return;
+                }
+            }
+
+        }
+
+
+    </script>
+    <div id="export-modal-import-excel" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form method="post" action="" enctype="multipart/form-data">
+              {% csrf_token %}
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">知识库构建</h4>
+          </div>
+          <div class="modal-body">
+               <input type="file" onchange="fileChange(this)" name="html" id="submit_upload" multiple="multiple">
+                <strong>说明：</strong>导入HTML文件后，系统会在后台存储并解析HTML文件，挖掘生成的QA对会自动保存到问答信息表，
+              知识库一旦开始构建则无法停止，上传期间，您可以单击关闭/返回按钮在后台实时查看生成的QA对信息。<br>
+              <strong>注意：</strong>由于租用的云服务器性能配置较低，单次上传文件数量请尽量不要大于<strong> 50 </strong>个！
+                 <hr/>
+              <div id="content">
+                  <p> <strong>0</strong>
+                     个文件准备上传，已经上传第<strong>0</strong> 个;<br/>
+                    <strong> 0</strong> 分钟挖掘出
+                    <strong>0</strong> 条QA对;<br/>
+                    其中挖掘率小于1的文件 <strong> 0</strong>个，转换率为 <strong>
+                    0%</strong>,挖掘率为 <strong> 0%</strong></p>
+                  
+              </div>
+          </div>
+              <div class="processcontainer">
+                <div id="processbar" style="width:0%;"></div>
+              </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id = "btn2">{% trans "Close" %}/返回</button>
+            <button class="btn btn-success" type="submit" id="submit_upload_b"><i class="icon-share"></i>开始/查看</button>
+          </div>
+          </form>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dalog -->
+    </div><!-- /.modal -->
+<script>
+        function update() {
+            $.getJSON("/num/",function(jsonData){
+                window.pro = jsonData.pro;
+                if (window.pro > 0){
+                $("#content").html('<p>' +'<strong>'+jsonData.sum +'</strong>'
+                    + '个文件准备上传，'+'已经上传第'+'<strong>'+ jsonData.count+'</strong>' +'个;<br/>'
+                    +'<strong>'+ jsonData.time+'</strong>'+ '分钟挖掘出'+
+                    '<strong>'+ jsonData.qa+'</strong>'+ '条QA对;<br/>'
+                    +'其中挖掘率小于1的文件' +'<strong>'+ jsonData.err+'</strong>'+'个，转换率为'+ '<strong>'+
+                    jsonData.rate+'%</strong>'+',挖掘率为'+ '<strong>'+ jsonData.mine+'%</strong>'+'</p>');
+                }
+        });}
+
+
+    var btn1 = document.getElementById("submit_upload_b");
+    var btn2 = document.getElementById("btn2");
+    var t;
+
+    btn1.addEventListener("click", function(){
+        t = setInterval(function() {
+            update();
+          setProcess()
+
+       }, 1000);
+    });
+
+    btn2.addEventListener("click", function(){
+        clearInterval(t);
+        window.clearInterval(bartimer)
+        });
+
+</script>
+<script type="text/javascript">
+ function setProcess(){
+    var processbar = document.getElementById("processbar");
+    if (window.pro > 0) {
+        processbar.style.width = parseInt(window.pro )+ "%";
+        processbar.innerHTML = processbar.style.width;
+    }
+        if(processbar.style.width == "100%"){
+     window.clearInterval(bartimer);
+  }
+ }
+    var bartimer = window.setInterval(function(){setProcess();},1000);
+    window.onload = function(){
+        bartimer;
+}
+
+    </script>
+</div>
+
