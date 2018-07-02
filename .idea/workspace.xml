@@ -148,8 +148,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>btn1</find>
-      <find>sum</find>
       <find>elas</find>
       <find>good</find>
       <find>json_args</find>
@@ -178,6 +176,8 @@
       <find>commit</find>
       <find>initClientEncode</find>
       <find>cur</find>
+      <find />
+      <find>&quot;&quot;&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>filepath</replace>
@@ -195,6 +195,8 @@
       <replace>float</replace>
       <replace>500</replace>
       <replace>file_name</replace>
+      <replace>'</replace>
+      <replace>&quot;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">

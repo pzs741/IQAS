@@ -99,7 +99,7 @@ def search(request, key_words):
 
     if not hit_list:
         hit_list = [
-            {"question":"小猪快跑实验室的后台没有答案？","topic":"小猪快跑实验室","md5":"0","score":"100","answer":"""
+            {"question":"小猪快跑实验室的后台没有答案？","topic":"小猪快跑实验室","md5":"0","score":100.0,"answer":"""
             <div>
     <ul>
         <li>登录http://piggrush.cn/，帐号：test，密码：test123456;</li>
@@ -113,7 +113,7 @@ def search(request, key_words):
             小猪快跑实验室的LOGO含意是什么？,
             小猪快跑实验室的成员有哪些？,]
             """},
-            {"question": "小猪快跑实验室如何创建得名？", "topic": "小猪快跑实验室", "md5": "1", "score": "75", "answer": """
+            {"question": "小猪快跑实验室如何创建得名？", "topic": "小猪快跑实验室", "md5": "1", "score": 75.0, "answer": """
             <table border="1px solid">
             <thead>
               <tr>
@@ -131,7 +131,7 @@ def search(request, key_words):
             小猪快跑实验室的LOGO含意是什么？,
             小猪快跑实验室的成员有哪些？,]
             """},
-            {"question": "小猪快跑实验室的LOGO含意是什么？", "topic": "小猪快跑实验室", "md5": "2", "score": "50", "answer": """
+            {"question": "小猪快跑实验室的LOGO含意是什么？", "topic": "小猪快跑实验室", "md5": "2", "score": 50.0, "answer": """
             <div>
     <img src="https://raw.githubusercontent.com/pzs741/pzs741.github.io/master/photos/pig">
     <hr>
@@ -142,7 +142,7 @@ def search(request, key_words):
             小猪快跑实验室如何创建得名？,
             小猪快跑实验室的成员有哪些？,]
             """},
-            {"question": "小猪快跑实验室的成员有哪些？", "topic": "小猪快跑实验室", "md5": "3", "score": "25", "answer": """
+            {"question": "小猪快跑实验室的成员有哪些？", "topic": "小猪快跑实验室", "md5": "3", "score": 25.0, "answer": """
             <div>
     <ul>
         <li>队长：郑凯</li>
@@ -160,5 +160,4 @@ def search(request, key_words):
     return HttpResponse(json.dumps(hit_list), content_type="application/json")
 
 def test(request):
-
     return render(request,"test.html")
