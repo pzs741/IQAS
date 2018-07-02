@@ -99,62 +99,14 @@ def search(request, key_words):
 
     if not hit_list:
         hit_list = [
-            {"question":"小猪快跑实验室的后台没有答案？","topic":"小猪快跑实验室","md5":"0","score":100.0,"answer":"""
-            <div>
-    <ul>
-        <li>登录http://piggrush.cn/，帐号：test，密码：test123456;</li>
-        <li>在主页面的添加数据中补全信息，而后保存;</li>
-        <li>选择问答信息，信息检索下拉菜单，检索生成，点击确定按钮，等待生成新的搜索建议字段。</li>
-        <li>打开APP输入您添加的问题，进行测试。</li>
-    </ul>
-</div>
-            ""","expand":"""
-            [小猪快跑实验室如何创建得名？,
-            小猪快跑实验室的LOGO含意是什么？,
-            小猪快跑实验室的成员有哪些？,]
-            """},
-            {"question": "小猪快跑实验室如何创建得名？", "topic": "小猪快跑实验室", "md5": "1", "score": 75.0, "answer": """
-            <table border="1px solid">
-            <thead>
-              <tr>
-                <td>小猪快跑实验室</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>诞生于第六届中国软件杯大学生软件设计大赛，得名于老队员高志强，参赛题目分布式爬虫系统，参赛队员王贇、彭圳生和高志强，指导老师李咏。</td>
-              </tr>
-            </tbody>
-    </table>
-            """, "expand": """
-            [猪快跑实验室的后台没有答案？,
-            小猪快跑实验室的LOGO含意是什么？,
-            小猪快跑实验室的成员有哪些？,]
-            """},
-            {"question": "小猪快跑实验室的LOGO含意是什么？", "topic": "小猪快跑实验室", "md5": "2", "score": 50.0, "answer": """
-            <div>
-    <img src="https://raw.githubusercontent.com/pzs741/pzs741.github.io/master/photos/pig">
-    <hr>
-    <a href="https://raw.githubusercontent.com/pzs741/pzs741.github.io/master/photos/pig">LOGO</a>由老队长王贇设计，蕴意笨鸟先飞，小猪快跑，不忘初心，继续前进！
-</div>
-            """, "expand": """
-            [猪快跑实验室的后台没有答案？,
-            小猪快跑实验室如何创建得名？,
-            小猪快跑实验室的成员有哪些？,]
-            """},
-            {"question": "小猪快跑实验室的成员有哪些？", "topic": "小猪快跑实验室", "md5": "3", "score": 25.0, "answer": """
-            <div>
-    <ul>
-        <li>队长：郑凯</li>
-        <li>队员：彭圳生，李爱</li>
-        <li>指导老师：刘菲菲</li>
-    </ul>
-</div>
-            """, "expand": """
-            [猪快跑实验室的后台没有答案？,
-            小猪快跑实验室如何创建得名？,
-            小猪快跑实验室的LOGO含意是什么？,]
-            """},
+            {"question":"小猪快跑实验室的后台没有答案？","topic":"小猪快跑实验室","md5":"0","score":100.0,"answer":"<div><ul><li>登录http://piggrush.cn/，帐号：test，密码：test123456;</li><li>在主页面的添加数据中补全信息，而后保存;</li><li>选择问答信息，信息检索下拉菜单，检索生成，点击确定按钮，等待生成新的搜索建议字段。</li><li>打开APP输入您添加的问题，进行测试。</li></ul></div>",
+             "expand":"[]"},
+            {"question": "小猪快跑实验室如何创建得名？", "topic": "小猪快跑实验室", "md5": "1", "score": 75.0, "answer": "<tableborder='1pxsolid'><thead><tr><td>小猪快跑实验室</td></tr></thead><tbody><tr><td>诞生于第六届中国软件杯大学生软件设计大赛，得名于老队员高志强，参赛题目分布式爬虫系统，参赛队员王贇、彭圳生和高志强，指导老师李咏。</td></tr></tbody></table>",
+             "expand": "[]"},
+            {"question": "小猪快跑实验室的LOGO含意是什么？", "topic": "小猪快跑实验室", "md5": "2", "score": 50.0, "answer": "<div><imgsrc='https://raw.githubusercontent.com/pzs741/pzs741.github.io/master/photos/pig'><hr><ahref='https://raw.githubusercontent.com/pzs741/pzs741.github.io/master/photos/pig'>LOGO</a>由老队长王贇设计，蕴意笨鸟先飞，小猪快跑，不忘初心，继续前进！</div>",
+            "expand": "[]"},
+            {"question": "小猪快跑实验室的成员有哪些？", "topic": "小猪快跑实验室", "md5": "3", "score": 25.0, "answer": "<div><ul><li>队长：郑凯</li><li>队员：彭圳生，李爱</li><li>指导老师：刘菲菲</li></ul></div>",
+             "expand": "[]"},
         ]
 
     return HttpResponse(json.dumps(hit_list), content_type="application/json")

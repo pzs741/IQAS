@@ -176,8 +176,8 @@
       <find>commit</find>
       <find>initClientEncode</find>
       <find>cur</find>
-      <find />
       <find>&quot;&quot;&quot;</find>
+      <find />
     </findStrings>
     <replaceStrings>
       <replace>filepath</replace>
@@ -197,6 +197,7 @@
       <replace>file_name</replace>
       <replace>'</replace>
       <replace>&quot;</replace>
+      <replace>`</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
