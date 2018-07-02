@@ -55,13 +55,23 @@ class Mysql(object):
         self.expand = str(i[3])
 
     def save(self):
+
         insert_sql = """
                     insert into huawei_qamodel(md5, question, topic, answer,file_name,expand)
                     VALUES (%s, %s, %s, %s, %s, %s)
                 """
-        self.cursor.execute(insert_sql, (self.md5, self.question, self.topic, self.answer, self.file_name, self.expand))
-        self.conn.commit()
-        self.cursor.close()
+        try:
+            # 执行sql语句
+            self.cursor.execute(insert_sql,
+                                (self.md5, self.question, self.topic, self.answer, self.file_name, self.expand))
+
+            # 提交到数据库执行
+            self.conn.commit()
+        except:
+            # 发生错误时回滚
+            self.conn.rollback()
+
+        # 关闭数据库连接
         self.conn.close()
 
 def mysql_to_es():
@@ -111,11 +121,9 @@ if __name__ == "__main__":
             summery_list = summery(e.summery)
             for i in summery_list:
                 m = Mysql(i)
-                try:
-                    m.save()
-                    count += 1
-                    if count%100 == 0:mysql_to_es()
-                    print('md5:{}\nquestion:{}\ntopic:{}\nanswer:{}\nfile_name:{}\nexpand:{}\n'.format(m.md5, m.question, m.topic, m.answer,m.file_name,m.expand))
-                except Exception as e:
-                    print(e)
+                m.save()
+                count += 1
+                if count%100 == 0:
+                    mysql_to_es()
+                print('md5:{}\nquestion:{}\ntopic:{}\nanswer:{}\nfile_name:{}\nexpand:{}\n'.format(m.md5, m.question, m.topic, m.answer,m.file_name,m.expand))
     mysql_to_es()

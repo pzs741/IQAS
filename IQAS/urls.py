@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from huawei.views import num,suggest,search
+from huawei.views import num,suggest,search,test
 from django.views.static import serve
 from IQAS.settings import STATIC_ROOT
 import xadmin
@@ -26,7 +26,8 @@ urlpatterns = [
     url(r'^num/', num),
     url(r'^static/(?P<path>.*)$',  serve, {"document_root":STATIC_ROOT}),
     url(r'^suggest/(?P<key_words>.*)$',suggest),
-    url(r'^search/(?P<key_words>.*)$', search)
+    url(r'^search/(?P<key_words>.*)$', search),
+    url(r'^test/', test),
 
 ]
 #全局500页面配置

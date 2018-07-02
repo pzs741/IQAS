@@ -1,6 +1,7 @@
 import json
 
 from django.http import HttpResponse
+from django.shortcuts import render
 from elasticsearch import Elasticsearch
 
 from utils import json_args
@@ -67,44 +68,8 @@ def suggest(request, key_words):
 
 
 def search(request, key_words):
-    key_words = str(key_words)
-    if key_words.startswith('你好') or key_words.startswith('谢谢') :
-        hello_word = """
-        很高兴为您服务！我是华为智能客服客服机器人，输入问题点击获取答案或者输入数字0-4，欢迎来聊（撩）～
-        0：小猪快跑实验室
-        1：郑凯
-        2：彭圳生
-        3:李爱
-        4:刘菲菲
-        """
-        return HttpResponse(json.dumps(hello_word), content_type="application/json")
-    elif key_words.startswith('小猪') or key_words == '0':
-        hello_word = """
-                小猪快跑实验室坐落于古城西安的一所远近闻名的军事院校，主要研究方向包括智能问答、信息抽取、
-                文本挖掘、搜索引擎与自然语言处理等等，非常期待您的加入与合作！
-                """
-        return HttpResponse(json.dumps(hello_word), content_type="application/json")
-    elif key_words.startswith('郑凯') or key_words == '1':
-        hello_word = """
-        小猪快跑实验室头号小猪，立志成为一名Java攻城狮。
-        """
-        return HttpResponse(json.dumps(hello_word), content_type="application/json")
-    elif key_words.startswith('彭圳生') or key_words == '2':
-        hello_word = """
-        小猪快跑实验室二号首长，自嗨狂人。
-        """
-        return HttpResponse(json.dumps(hello_word), content_type="application/json")
-    elif key_words.startswith('李爱') or key_words == '3':
-        hello_word = """
-        小猪快跑实验室头号美女，首长秘书，开玩笑的别当真...
-        """
-        return HttpResponse(json.dumps(hello_word), content_type="application/json")
-    elif key_words.startswith('刘菲菲') or key_words == '4':
-        hello_word = """
-        小猪快跑实验室猪圈看管人，见证了小猪们的成长。
-        """
-        return HttpResponse(json.dumps(hello_word), content_type="application/json")
 
+    key_words = str(key_words)
     client = Elasticsearch(hosts=["127.0.0.1"])
     response = client.search(
         index="qa",
@@ -132,12 +97,68 @@ def search(request, key_words):
 
         hit_list.append(hit_dict)
 
-    if key_words == '' or not hit_list:
-        hello_word = """
-        恭喜！您发现了一片知识知识的荒原，进入后台piggrush.cn添加您想要的问题和答案，点击“信息检索”拓展知识库！
-        帐号:test
-        密码:test123456
-        """
-        return HttpResponse(json.dumps(hello_word), content_type="application/json")
+    if not hit_list:
+        hit_list = [
+            {"question":"小猪快跑实验室的后台没有答案？","topic":"小猪快跑实验室","md5":"0","score":"100","answer":"""
+            <div>
+    <ul>
+        <li>登录http://piggrush.cn/，帐号：test，密码：test123456;</li>
+        <li>在主页面的添加数据中补全信息，而后保存;</li>
+        <li>选择问答信息，信息检索下拉菜单，检索生成，点击确定按钮，等待生成新的搜索建议字段。</li>
+        <li>打开APP输入您添加的问题，进行测试。</li>
+    </ul>
+</div>
+            ""","expand":"""
+            [小猪快跑实验室如何创建得名？,
+            小猪快跑实验室的LOGO含意是什么？,
+            小猪快跑实验室的成员有哪些？,]
+            """},
+            {"question": "小猪快跑实验室如何创建得名？", "topic": "小猪快跑实验室", "md5": "1", "score": "75", "answer": """
+            <table border="1px solid">
+            <thead>
+              <tr>
+                <td>小猪快跑实验室</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>诞生于第六届中国软件杯大学生软件设计大赛，得名于老队员高志强，参赛题目分布式爬虫系统，参赛队员王贇、彭圳生和高志强，指导老师李咏。</td>
+              </tr>
+            </tbody>
+    </table>
+            """, "expand": """
+            [猪快跑实验室的后台没有答案？,
+            小猪快跑实验室的LOGO含意是什么？,
+            小猪快跑实验室的成员有哪些？,]
+            """},
+            {"question": "小猪快跑实验室的LOGO含意是什么？", "topic": "小猪快跑实验室", "md5": "2", "score": "50", "answer": """
+            <div>
+    <img src="https://raw.githubusercontent.com/pzs741/pzs741.github.io/master/photos/pig">
+    <hr>
+    <a href="https://raw.githubusercontent.com/pzs741/pzs741.github.io/master/photos/pig">LOGO</a>由老队长王贇设计，蕴意笨鸟先飞，小猪快跑，不忘初心，继续前进！
+</div>
+            """, "expand": """
+            [猪快跑实验室的后台没有答案？,
+            小猪快跑实验室如何创建得名？,
+            小猪快跑实验室的成员有哪些？,]
+            """},
+            {"question": "小猪快跑实验室的成员有哪些？", "topic": "小猪快跑实验室", "md5": "3", "score": "25", "answer": """
+            <div>
+    <ul>
+        <li>队长：郑凯</li>
+        <li>队员：彭圳生，李爱</li>
+        <li>指导老师：刘菲菲</li>
+    </ul>
+</div>
+            """, "expand": """
+            [猪快跑实验室的后台没有答案？,
+            小猪快跑实验室如何创建得名？,
+            小猪快跑实验室的LOGO含意是什么？,]
+            """},
+        ]
 
     return HttpResponse(json.dumps(hit_list), content_type="application/json")
+
+def test(request):
+
+    return render(request,"test.html")
