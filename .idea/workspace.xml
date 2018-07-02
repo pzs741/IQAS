@@ -148,7 +148,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>elas</find>
       <find>good</find>
       <find>json_args</find>
       <find>sum_list</find>
@@ -178,6 +177,7 @@
       <find>cur</find>
       <find>&quot;&quot;&quot;</find>
       <find />
+      <find>em</find>
     </findStrings>
     <replaceStrings>
       <replace>filepath</replace>
@@ -198,6 +198,7 @@
       <replace>'</replace>
       <replace>&quot;</replace>
       <replace>`</replace>
+      <replace>strong</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">

@@ -56,14 +56,22 @@ class Mysql(object):
 
     def save(self):
 
+        # insert_sql = """
+        #             insert into huawei_qamodel(md5, question, topic, answer,file_name,expand)
+        #             VALUES (%s, %s, %s, %s, %s, %s)
+        #         """
+
         insert_sql = """
-                    insert into huawei_qamodel(md5, question, topic, answer,file_name,expand)
-                    VALUES (%s, %s, %s, %s, %s, %s)
-                """
+                            insert into huawei_uploadmodel(file_name,file_path)
+                            VALUES (%s, %s)
+                        """
+
         try:
             # 执行sql语句
+            # self.cursor.execute(insert_sql,
+            #                     (self.md5, self.question, self.topic, self.answer, self.file_name, self.expand))
             self.cursor.execute(insert_sql,
-                                (self.md5, self.question, self.topic, self.answer, self.file_name, self.expand))
+                                (self.file_name,"huawei/"+self.file_name))
 
             # 提交到数据库执行
             self.conn.commit()
