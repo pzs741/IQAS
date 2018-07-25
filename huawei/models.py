@@ -14,13 +14,12 @@ def summery(summery_list):
     question_list = []
     for i in summery_list:
         q = QGDT(i[0],
-                 LOG_ENABLE=True,
-                 LOG_LEVEL='WARNING',
-                 MAX_SAMPLE=3,
-                 RANDOM=True,
-                 LAMBDA=0.2,
-                 ALPHA=0.3,
-                 BETA=0.5)
+                 LOG_ENABLE=False,
+                 LOG_LEVEL='DEBUG',
+                 RANDOM_SAMPLE=False,
+                 LAMBDA=1,
+                 ALPHA=1.2,
+                 BETA=0.05)
         q.ranking_algorithm()
         question_list.append(q.question_generation())
     for index,i in enumerate(summery_list):

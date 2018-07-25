@@ -20,13 +20,12 @@ def summery(summery_list):
     question_list = []
     for i in summery_list:
         q = QGDT(i[0],
-                 LOG_ENABLE=True,
-                 LOG_LEVEL='WARNING',
-                 MAX_SAMPLE=10,
-                 RANDOM=True,
-                 LAMBDA=0.2,
-                 ALPHA=0.3,
-                 BETA=0.5)
+                 LOG_ENABLE=False,
+                 LOG_LEVEL='DEBUG',
+                 RANDOM_SAMPLE=False,
+                 LAMBDA=0.4,
+                 ALPHA=1.2,
+                 BETA=0.05)
         q.ranking_algorithm()
         question_list.append(q.question_generation())
     for index, i in enumerate(summery_list):
@@ -56,22 +55,22 @@ class Mysql(object):
 
     def save(self):
 
-        # insert_sql = """
-        #             insert into huawei_qamodel(md5, question, topic, answer,file_name,expand)
-        #             VALUES (%s, %s, %s, %s, %s, %s)
-        #         """
-
         insert_sql = """
-                            insert into huawei_uploadmodel(file_name,file_path)
-                            VALUES (%s, %s)
-                        """
+                    insert into huawei_qamodel(md5, question, topic, answer,file_name,expand)
+                    VALUES (%s, %s, %s, %s, %s, %s)
+                """
+        #
+        # insert_sql = """
+        #                     insert into huawei_uploadmodel(file_name,file_path)
+        #                     VALUES (%s, %s)
+        #                 """
 
         try:
             # 执行sql语句
-            # self.cursor.execute(insert_sql,
-            #                     (self.md5, self.question, self.topic, self.answer, self.file_name, self.expand))
             self.cursor.execute(insert_sql,
-                                (self.file_name,"huawei/"+self.file_name))
+                                (self.md5, self.question, self.topic, self.answer, self.file_name, self.expand))
+            # self.cursor.execute(insert_sql,
+            #                     (self.file_name,"huawei/"+self.file_name))
 
             # 提交到数据库执行
             self.conn.commit()
