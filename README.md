@@ -28,7 +28,7 @@ IQAS是小猪快跑实验室参加第七届中国软件杯大学生软件设计�
 
 
 
-| 发布日期 | 版本号 | 项目名称 |下载地址|
+| 发布日期 | 版本号/密码 | 项目名称 |下载地址|
 | --- | --- | --- | --- |
 |2018.6.13| 0.1.1| 基于Web文档密度和标签的问答对抽取及挖掘算法| https://github.com/pzs741/EMDT |
 |2018.6.18| 0.2.4| 基于深度学习和模板的问句生成算法| https://github.com/pzs741/QGDT |
@@ -41,16 +41,14 @@ IQAS是小猪快跑实验室参加第七届中国软件杯大学生软件设计�
 
 
 
-
-
 # 文档
 文档说明，包括系统设计文档、知识库构建核心规则或算法设计文档等。
 
 | 发布日期 | 类别 | 下载地址 |密码|
 | --- | --- | --- | --- |
-|2018.6.12|系统设计文档|https://pan.baidu.com/s/1t52ad1E7CoOibA_yxYlqKA | 29g2 |
-|2018.8.20|系统设计文档|https://pan.baidu.com/s/1lZShWy_GuEe7TT2JQJWdwg | pln1 |
-|2018.8.20|基于Web工作文档的知识库构建算法|https://pan.baidu.com/s/1IZGIA0buczvDZ5GHjX1f7Q | 待发表 |
+|2018.6.12|系统设计文档1.0|https://pan.baidu.com/s/1t52ad1E7CoOibA_yxYlqKA | 29g2 |
+|2018.8.20|系统设计文档2.0|https://pan.baidu.com/s/1lZShWy_GuEe7TT2JQJWdwg | pln1 |
+|2018.8.20|基于Web工作文档的知识库构建算法|https://pan.baidu.com/s/1IZGIA0buczvDZ5GHjX1f7Q | 论文待发表 |
 
 # 阿里云部署
 前、后台采用服务器端+移动端模式，服务器端可为Web服务器，移动端为APP（Android）。
